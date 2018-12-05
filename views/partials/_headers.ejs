@@ -1,2 +1,11 @@
-
-<title>TinyApp</title>
+<% if (username) { %>
+Logged in as: <%= username %>
+<form method="POST" action="/logout" style="display: inline;">
+	<button type="submit">Logout</button>
+</form>
+<% } else { %>
+<form method="POST" action="/login">
+	<input type="text" name="username" placeholder="Enter username">
+	<button type="submit">Sign in</button>
+</form>
+<% } %>
