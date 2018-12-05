@@ -7,6 +7,10 @@
 	<ul>
 		<li>Shortened URL: <%= shortURL %> </li>
 		<li> Long URL: <%= longURL %></li>
+		<form style="display: inline" method="POST" action="/urls/<%= shortURL %>">
+			<input id="update" type="text" name="update" placeholder="New URL">
+			<button type="submit">Update</button>
+		</form>
 	</ul>
 </body>
 </html>

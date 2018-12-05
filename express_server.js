@@ -32,6 +32,7 @@ app.get("/urls/new", (req, res) => {
 });
 // post request from URL input form -- response get sent to urlDB then redirects user to urls_show
 app.post("/urls", (req, res) => {
+	console.log(req.body.longURL)
 	shortenedURL = generateRandomString();
 	urlDB[shortenedURL] = req.body.longURL;
 	res.redirect(`/urls/${shortenedURL}`)
@@ -49,10 +50,21 @@ app.get("/urls", function(req, res) {
 // currently unused?
 app.get("/urls/:id", (req, res) => {
 	let x = req.params.id
-  let templateVars = { shortURL: req.params.id, longURL: urlDB[x] };
-  res.render("urls_show", templateVars);
+  	let templateVars = { shortURL: req.params.id, longURL: urlDB[x] };
+  	res.render("urls_show", templateVars);
 });
+// deletes record of saved URL
+app.post("/urls/:id/delete", (req, res) => {
+	let id = req.params.id;
+	delete urlDB[id]
+	res.redirect("/urls")
+})
 
+app.post("/urls/:id", (req, res) => {
+	let id = req.params.id;
+	urlDB[id] = req.body.update
+	res.redirect(`/urls/${id}`)
+})
 // JSON of URLS
 app.get("/urls.json", (req, res) => {
  	res.json(urlDB);

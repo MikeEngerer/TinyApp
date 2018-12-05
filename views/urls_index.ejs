@@ -6,8 +6,16 @@
 <body>
 	<ul>
 		<% for (url in urls) { %>
-		<li><a href="#"> Shorten me!</a> <%= urls[url] %></li>
-	<% }; %>
+		<li>
+			<%= url %> ---->
+			<a href="<%= urls[url] %>"><%= urls[url] %></a>
+			<a href="/urls/<%= url %>"> edit </a> 	
+			<form style="display: inline;" method="POST" action="/urls/<%= url %>/delete">
+				<button name="delete">Delete</button>
+			</form>
+		</li>
+		<% }; %>
 	</ul>
+
 </body>
 </html>
