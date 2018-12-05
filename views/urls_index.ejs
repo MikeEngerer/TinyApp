@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<header> <% include partials/_headers.ejs %> </header>
+</head>
+<body>
+	<ul>
+		<% for (url in urls) { %>
+		<li><a href="#"> Shorten me!</a> <%= urls[url] %></li>
+	<% }; %>
+	</ul>
+</body>
+</html>
