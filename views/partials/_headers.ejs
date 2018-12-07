@@ -1,3 +1,7 @@
+
+<!-- partial, displayed on most pages
+if logged in, shows buttons for logout, else, 
+shows buttons for login/register -->
 <% if (user_id) { %>
 Logged in as: <%= user_id.email %>
 <form method="POST" action="/logout" style="display: inline;">
