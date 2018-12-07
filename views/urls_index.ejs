@@ -3,16 +3,27 @@
 <head>
 </head>
 <body>
+	<!-- does not show url_index unless logged in -->
+	<% if (!user_id) { %>
+	<h2>Please sign in to view your index of Tiny URLs</h2>
+	<% } %>
 	<% include partials/_headers.ejs %> 
+	<% if (user_id) { %>
+	<form style="display: inline" method="GET" action="/urls/new">
+    	<input type="submit" value="New URL">
+    </form>
+	<% } %>
 	<ul>
 		<% for (url in urls) { %>
 		<li>
-			<%= url %> ---->
-			<a href="<%= urls[url] %>"><%= urls[url] %></a>
-			<a href="/urls/<%= url %>"> edit </a> 	
+			<%= url %> -
+			<a href="<%= urls[url].longURL %>"><%= urls[url].longURL %></a>
+			<% if (user_id) { %>
+			- <a href="/urls/<%= url %>">Edit</a> -
 			<form style="display: inline;" method="POST" action="/urls/<%= url %>/delete">
 				<button name="delete">Delete</button>
 			</form>
+			<% } %>
 		</li>
 		<% }; %>
 	</ul>

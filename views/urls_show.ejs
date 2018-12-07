@@ -3,7 +3,16 @@
 <head>
 </head>
 <body>
-	 <% include partials/_headers.ejs %>
+	<% if (!user_id) { %>	
+	<h2>Please sign in to view this Tiny URL</h2>
+	<% } %>
+	<% include partials/_headers.ejs %>
+	<% if (user_id) { %>
+	<form style="display: inline" method="GET" action="/urls">
+    	<input type="submit" value="URL index">
+    </form>
+	<% } %>
+	<% if (user_id) { %>
 	<ul>
 		<li>Shortened URL: <%= shortURL %> </li>
 		<li> Long URL: <%= longURL %></li>
@@ -12,5 +21,6 @@
 			<button type="submit">Update</button>
 		</form>
 	</ul>
+	<% } %>
 </body>
 </html>
